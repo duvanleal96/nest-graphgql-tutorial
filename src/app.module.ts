@@ -7,6 +7,8 @@ import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { Post } from './post/post.entity';
+import { AuthorsModule } from './authors/authors.module';
+import { Author } from './authors/entities/author.entity';
 
 @Module({
   //Configuracion de graphQL
@@ -22,10 +24,11 @@ import { Post } from './post/post.entity';
       username: 'postgres',
       password: 'root',
       database: 'graphqlTutorial',
-      entities: [Post],
+      entities: [Post, Author],
       synchronize: true,
     }),
     PostModule,
+    AuthorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -2,21 +2,43 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Author {
+  id: Float!
+  name: String!
+  posts: [Post!]
+}
+
 type Post {
   id: Int!
   title: String!
   content: String
+  autor: Author!
 }
 
 type Query {
   post: [Post!]!
+  posts(id: Float!): Post!
+  authors: [Author!]!
+  author(id: Int!): Author!
 }
 
 type Mutation {
   createPost(postInput: CreatePostInputDto!): Post!
+  createAuthor(createAuthorInput: CreateAuthorInput!): Author!
+  updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
+  removeAuthor(id: Int!): Author!
 }
 
 input CreatePostInputDto {
   title: String!
   content: String
+}
+
+input CreateAuthorInput {
+  name: String!
+}
+
+input UpdateAuthorInput {
+  name: String
+  id: Int!
 }
